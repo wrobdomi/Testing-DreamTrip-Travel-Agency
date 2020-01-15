@@ -1,0 +1,51 @@
+<section id="adminSection" class="container">
+  <h1>Admin panel</h1>
+  <hr>
+
+  <h2>Add new trip</h2>
+
+      <app-admin-add-trip
+         (newTripAdded)="onNewTripAddedReceived($event)">
+      </app-admin-add-trip>
+
+  <hr>
+  <h2>Remove a trip</h2>
+
+  <div class="row" id="tripsList">
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Left</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+
+              <tr
+                app-admin-remove-trip
+                *ngFor="let trip of allTrips"
+                [tripDetail]="trip"
+                (tripRemoved)="onTripRemovedReceived($event)"
+              >
+              </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+
+
+
+
+</section>

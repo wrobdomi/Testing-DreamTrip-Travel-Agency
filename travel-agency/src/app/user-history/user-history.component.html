@@ -1,0 +1,29 @@
+<section id="userHistorySection" class="container">
+
+  <h1>Best purchases make best memories !</h1>
+  <hr>
+
+  <ngb-accordion #a="ngbAccordion">
+
+
+    <ng-container *ngFor="let order of ordersArray">
+
+      <ngb-panel>
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="m-0">{{order.date}} | Order no: {{order.orderId}} | Amount: {{order.total}} $ | Status: {{order.status}}</h5>
+            <button ngbPanelToggle class="btn btn-link p-0">See details</button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <ul>
+            <li *ngFor="let tripName of order.tripsNames; let i = index"> {{tripName}} <span class="badge badge-info"> {{order.tripsReserved[i]}} </span> </li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+
+    </ng-container>
+
+</ngb-accordion>
+
+</section>

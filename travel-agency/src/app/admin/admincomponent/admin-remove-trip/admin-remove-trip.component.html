@@ -1,0 +1,15 @@
+    <td class="align-middle">{{tripDetail.id}}</td>
+    <td class="align-middle">{{tripDetail.name | uppercase }}</td>
+    <td class="align-middle">{{tripDetail.countryDestination | uppercase}}</td>
+    <td class="align-middle">{{tripDetail.tripStarts}}</td>
+    <td class="align-middle">{{tripDetail.tripEnds}}</td>
+    <td class="align-middle">{{tripDetail.price | currency}}</td>
+    <td class="align-middle">{{tripDetail.maxAvailableBookings - tripDetail.bookedTrips}}</td>
+    <td class="align-middle">
+        <button id="removeTripButton" class="btn"
+        (click)="onTripRemoved(tripDetail.id)">
+            <i class="fa fa-ban"></i>
+        </button>
+    </td>
+
+

@@ -1,0 +1,62 @@
+.jumbotron {
+    color: white;
+    background-image: url('https://source.unsplash.com/_3TDkAttcaM');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 50vh;
+}
+
+.promotion-banner-1 {
+  font-size: 25px;
+}
+
+.promotion-banner-2{
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 7px;
+}
+
+.promotion-banner-3{
+  font-size: 20px;
+}
+
+.nav-row{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* #navSection{
+  position: fixed;
+  width: 100%
+} */
+
+hr{
+    width: 80%;
+    border: 1px solid white;
+}
+
+@media (min-width: 992px) {
+
+  hr{
+    width: 40%;
+    border: 1px solid white;
+  }
+
+}
+
+.navText{
+  color: white;
+}
+
+.navTextMenu{
+  color: white;
+  font-size: 22px;
+  border: 1px solid white;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.active-link-icon {
+  color: orange;
+}

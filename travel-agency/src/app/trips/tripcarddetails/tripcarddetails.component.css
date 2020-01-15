@@ -1,0 +1,117 @@
+.star {
+  font-size: 1.5rem;
+  color: #D3D3D3;
+}
+
+
+@keyframes no-show {
+	0% {
+		transform: rotateY(0deg);
+    height: 100%;
+    width: 100%;
+	}
+
+	49% {
+		height: 100%;
+		width: 100%;
+	}
+
+	50% {
+		height: 0;
+		width: 0;
+	}
+
+	100% {
+		transform: rotateY(180deg);
+		height: 0;
+		width: 0;
+	}
+}
+
+@keyframes show {
+	0% {
+		transform: rotateY(-180deg);
+		height: 0;
+		width: 0;
+	}
+
+	49% {
+		height: 0;
+		width: 0;
+	}
+
+	50% {
+		height: 100%;
+		width: 100%;
+	}
+
+	100% {
+		transform: rotateY(0deg);
+		height: 100%;
+		width: 100%;
+	}
+}
+
+
+.flipper {
+	position: relative;
+}
+
+
+.front, .back {
+  position: relative;
+	perspective: 1000px;
+
+	transform-style: preserve-3d;
+	perspective-origin: top center;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	transition-property: transform;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	overflow: hidden;
+}
+
+.front {
+	z-index: 2;
+
+	transform: rotateY(0deg);
+}
+
+
+.back {
+	transform: rotateY(-180deg);
+}
+
+
+.animation-show{
+  animation-name: show;
+}
+
+.animation-no-show{
+  animation-name: no-show;
+}
+
+.price-text{
+  font-size: 25px;
+}
+
+.marketing-logo {
+  font-size: 20px;
+}
+
+
+#addToBasketButton{
+  color: lightgreen;
+  font-size: 40px;
+}
+
+#removeFromBasketButton{
+  color: lightcoral;
+  font-size: 40px;
+}
+
+.filled {
+  color:#FFFF00;
+}
+

@@ -1,0 +1,73 @@
+
+<nav class="container-fluid navbar navbar-expand fixed-top nav-row">
+
+  <a class="navbar-brand navText" href="#">DreamTrip <i class="fa fa-diamond"></i></a>
+
+  <ul class="navbar-nav ml-auto">
+
+    <li *ngIf="!isAuth" class="nav-item">
+      <a class="nav-link navTextMenu" routerLink="/login" routerLinkActive="active-link-icon" [routerLinkActiveOptions]="{exact: true}">
+      <i class="fa fa-sign-in"></i></a>
+    </li>
+    <li *ngIf="!isAuth" class="nav-item">
+      <a class="nav-link navTextMenu" routerLink="/signup" routerLinkActive="active-link-icon" [routerLinkActiveOptions]="{exact: true}">
+      <i class="fa fa-user-plus"></i></a>
+    </li>
+
+    <li  *ngIf="isAuth" class="nav-item">
+      <a class="nav-link navTextMenu" routerLink="/trips" routerLinkActive="active-link-icon" [routerLinkActiveOptions]="{exact: true}">
+      <i class="fa fa-sun-o"></i></a>
+    </li>
+    <li *ngIf="isAuth" class="nav-item">
+      <a class="nav-link navTextMenu" routerLink="/basket" routerLinkActive="active-link-icon" [routerLinkActiveOptions]="{exact: true}">
+      <i class="fa fa-shopping-cart"></i></a>
+    </li>
+    <li *ngIf="isAuth" class="nav-item">
+      <a class="nav-link navTextMenu" routerLink="/history" routerLinkActive="active-link-icon" [routerLinkActiveOptions]="{exact: true}">
+      <i class="fa fa-history" aria-hidden="true"></i></a>
+    </li>
+    <li *ngIf="isAuth && isAdmin" class="nav-item">
+      <a class="nav-link navTextMenu" routerLink="/admin" routerLinkActive="active-link-icon" [routerLinkActiveOptions]="{exact: true}">
+      <i class="fa fa-lock"></i></a>
+    </li>
+    <li *ngIf="isAuth" class="nav-item">
+      <a class="nav-link navTextMenu" (click)="onLogout()">
+      <i class="fa fa-sign-out navText"></i></a>
+    </li>
+  </ul>
+
+</nav>
+
+
+<header>
+
+  <section id="top" class="jumbotron jumbotron-fluid">
+
+      <h1 class="text-center" style="margin-top: 150px;">DreamTrip Travel Agency</h1>
+      <hr>
+      <div class="container">
+          <div class="row">
+
+              <div class="col-sm-12 col-md-10">
+                  <p class="promotion-banner-1">Travel the world with us !</p>
+                  <p class="promotion-banner-3">Our mission is to provide top-notch trips in affordable prices.</p>
+              </div>
+
+              <div class="col-sm-0 col-md-2">
+                    <address  class="promotion-banner-2">
+                      Address: <br>
+                      Rynek 12c, <br>
+                      30-068, Kraków
+                    </address>
+              </div>
+
+          </div>
+
+
+      </div>
+
+  </section>
+
+
+
+</header>

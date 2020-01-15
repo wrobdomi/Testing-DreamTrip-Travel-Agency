@@ -1,0 +1,40 @@
+.login-card{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.login-diamond{
+  color: orange;
+  font-size: 60px;
+}
+
+
+.login-wrapper{
+  border-radius: 15px 50px;
+}
+
+.login-styles{
+  color: white;
+}
+
+
+.button-decor {
+  background-color: rgb(105, 96, 86);
+  color: white;
+}
+
+/* .login-shadow{
+   box-shadow: 10px 10px 5px grey;
+} */
+
+/* .left-palm{
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0px;
+}
+
+.right-palm{
+  position: -webkit-sticky;
+  position: sticky;
+  right: 0px;
+} */

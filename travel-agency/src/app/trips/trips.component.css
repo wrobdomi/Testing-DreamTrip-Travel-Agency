@@ -1,0 +1,17 @@
+#tripsListCards {
+  max-width: 1300px;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+
+.trips-taken-indicator {
+  width: 400px;
+  margin: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+

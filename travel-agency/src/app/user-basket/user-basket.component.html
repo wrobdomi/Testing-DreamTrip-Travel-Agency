@@ -1,0 +1,44 @@
+<section id="userBasket">
+
+  <div class="container ">
+
+      <div class="card text-center basket-card mx-auto">
+
+        <div class="card-header" *ngIf="tripsInBasketMap.size > 0">
+          Great choice !
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">Enjoy your trips by DreamTrip <i class="fa fa-diamond"></i></h5>
+
+             <ul class="list-group">
+                <ng-container *ngFor="let trip of tripsInBasketMap | keyvalue">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{trip.value.name}}
+                    <span class="badge badge-primary badge-pill">{{trip.value.allBooked}}</span>
+                  </li>
+                </ng-container>
+              </ul>
+
+              <p *ngIf="tripsInBasketMap.size === 0">No trips booked yet. Find your new adventure !</p>
+
+        </div>
+
+        <div class="card-footer text-muted">
+          Total: {{updateTotal()}} $
+        </div>
+
+        <div *ngIf="tripsInBasketMap.size > 0">
+          <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="onUserBoughtTrip()">Buy now !</button>
+        </div>
+
+
+      </div>
+
+  </div>
+
+
+
+
+
+</section>

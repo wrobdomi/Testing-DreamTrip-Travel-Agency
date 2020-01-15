@@ -1,0 +1,39 @@
+<section id="tripsListCards" class="container">
+
+  <h1>Available trips <i class="fa fa-bars" aria-hidden="true" (click)="showFilterCriteriaPanel()"></i></h1>
+
+
+  <p
+    class="text-center trips-taken-indicator"
+    [ngClass]="{'bg-danger': 10 > allBookedTripsNumber,
+                'bg-success': allBookedTripsNumber >= 10  }">
+      <i>We are proud of organizing over {{allBookedTripsNumber}} trips for our clients !</i>
+  </p>
+
+  <app-trips-filter-criteria
+    [isCollapsed]="showFilterCriteria">
+
+  </app-trips-filter-criteria>
+
+  <div class="card-columns">
+
+
+    <ng-container *ngFor="let trip of tripsArray">
+
+      <app-tripcarddetails
+        [tripCardDetail]="trip"
+        [currentMaxTripPrice]="tripsMaxPrice"
+        [currentMinTripPrice]="tripsMinPrice"
+        (tripAddedBasket)="onTripAddedToBasketReceived($event)"
+        (tripRemovedBasket)="onTripRemovedFromBasketReceived($event)">
+      </app-tripcarddetails>
+
+    </ng-container>
+
+
+  </div>
+</section>
+
+
+
+

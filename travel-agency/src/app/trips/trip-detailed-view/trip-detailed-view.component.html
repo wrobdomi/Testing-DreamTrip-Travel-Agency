@@ -1,0 +1,132 @@
+<section id="tripsDetailedViewSection" class="container text-center">
+
+  <h1>{{detailedTrip?.name}}</h1>
+  <hr>
+
+  <h2>General information</h2>
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Country</th>
+      <th scope="col">Price</th>
+      <th scope="col">Avarage Rating</th>
+      <th scole="col">Available trips</th>
+      <th scole="col">Reserved by you</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{detailedTrip?.countryDestination}}</td>
+      <td>{{detailedTrip?.price}} $</td>
+      <td>{{detailedTrip?.rating}}</td>
+      <td>{{detailedTrip?.maxAvailableBookings - detailedTrip?.bookedTrips}}</td>
+      <td>{{reservedByCustomer}}</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2>Gallery</h2>
+  <ngb-carousel #carousel interval="1500" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
+    <ng-template ngbSlide *ngFor="let img of images; index as i">
+      <div class="carousel-caption">
+        <h3>Welcome to {{ detailedTrip?.countryDestination }}</h3>
+      </div>
+      <a target="_blank">
+        <div class="picsum-img-wrapper my-carousel-image">
+          <img [src]="img" alt="Travel images">
+        </div>
+      </a>
+    </ng-template>
+</ngb-carousel>
+
+  <h2 style="margin-top: 20px;">Other customers opinion</h2>
+
+
+  <ng-container *ngFor="let tc of tripsComments">
+
+    <div
+      class="alert border border-secondary rounded mx-auto"
+      style="max-width: 600px;"
+      [ngClass]="{'alert-light' : tc.positive === true, 'alert-danger' : tc.positive === false}" role="alert">
+      <h4 class="alert-heading">{{tc?.date}}</h4>
+      <hr>
+      <p>{{tc?.commentContent}}</p>
+    </div>
+
+  </ng-container>
+
+
+  <h2>Leave your feedback</h2>
+  <div *ngIf="inUserHistory" class="text-center">
+
+  <form [formGroup]="addCommentForm" (ngSubmit)="onCommentAdded(addCommentForm)">
+
+
+      <div class="form-group">
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="negative" id="negative"
+            formControlName="negative">
+          <label class="form-check-label" for="negative">
+            Leave negative feedback
+          </label>
+        </div>
+
+      </div>
+
+
+      <div class="form-group" class="comment-text mx-auto">
+        <label for="feedback">Your feedback: </label>
+        <textarea
+          name="feedback" formControlName="feedback"
+          class="form-control"
+          id="feedback"
+          [ngClass]="{'is-invalid': feedback.invalid && (feedback.dirty || feedback.touched)}">
+        </textarea>
+
+        <div *ngIf="feedback.invalid && (feedback.dirty || feedback.touched)"
+          class="invalid-feedback">
+          <div *ngIf="feedback.errors.required">
+            The field is required.
+          </div>
+          <div *ngIf="feedback.errors.minlength">
+            Please, enter at least 5 characters.
+          </div>
+          <div *ngIf="feedback.errors.maxlength">
+            Please, enter less than 200 characters.
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-light" [disabled]="feedback.invalid" style="margin-top: 15px;">
+        Add comment
+      </button>
+  </form>
+
+
+    <h3 *ngIf="userRating === null">Rate the trip:</h3>
+    <h3 *ngIf="userRating !== null">Your rating: {{userRating.rating}}, thank you !</h3>
+    <p class="rating-style" *ngIf="userRating === null">
+      <ngb-rating [(rate)]="initialRate" [max]="maxAvailableRating" (rateChange)="onTripRatingAdded($event)">
+        <ng-template let-fill="fill">
+          <span class="star" [class.filled]="fill === 100">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+    </p>
+
+
+  </div>
+
+
+  <div *ngIf="!inUserHistory" class="alert alert-secondary" role="alert">
+    <h4 class="alert-heading">We're sorry...</h4>
+    <p>Only customers who bought the trip can leave feedbacks.</p>
+    <hr>
+    <p class="mb-0">Let us know after your trip !</p>
+  </div>
+
+
+</section>
+

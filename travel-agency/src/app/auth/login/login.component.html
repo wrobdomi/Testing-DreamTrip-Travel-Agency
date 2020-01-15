@@ -1,0 +1,79 @@
+<section class="container">
+
+
+  <div class="card mb-3 mx-auto border-0" style="max-width: 540px;">
+
+    <div class="row no-gutters login-card  login-wrapper">
+
+      <div class="col-md-4 ">
+
+        <div class="login-diamond text-center">
+          <i class="align-middle fa fa-diamond "></i>
+          <p>DreamTrip</p>
+
+          <p class="login-styles">
+            <i>Login and choose from 1000 trips to more than 150 destinations!</i>
+          </p>
+<!--
+          <button class="btn btn-light button-decor" routerLink="/signup">
+              Sign up
+          </button> -->
+        </div>
+
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body  login-card  login-wrapper login-styles">
+          <h5 class="card-title">Login</h5>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit(loginForm)">
+
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email"
+                    formControlName="email" aria-describedby="emailHelp" placeholder="Enter email"
+                    [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="invalid-feedback">
+
+              <div *ngIf="email.errors.required">
+                This field is required
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password"
+                    formControlName="password" placeholder="Password"
+                    [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched)}">
+            </div>
+
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="invalid-feedback">
+
+              <div *ngIf="password.errors.required">
+                This field is required
+              </div>
+
+            </div>
+
+
+            <!-- <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <button type="submit" class="btn btn-light button-decor">Login</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,182 @@
+<form [formGroup]="addTripModelForm" (ngSubmit)="onAddTripFormSubmit(addTripModelForm)">
+
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="inputName">Name:</label>
+      <input name="name" formControlName="name"
+          type="text" class="form-control"
+          id="inputName" placeholder="Name"
+          [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}">
+
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="invalid-feedback">
+
+        <div *ngIf="name.errors.required">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors.minlength">
+          Name must be at least 3 characters long.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputCountry">Country:</label>
+      <input name="country" formControlName="country"
+          type="text" class="form-control"
+          id="inputCountry" placeholder="Country"
+          [ngClass]="{'is-invalid': country.invalid && (country.dirty || country.touched)}">
+
+           <div *ngIf="country.invalid && (country.dirty || country.touched)"
+              class="invalid-feedback">
+
+              <div *ngIf="country.errors.required">
+                Country is required.
+              </div>
+              <div *ngIf="country.errors.minlength">
+                Country must be at least 3 characters long.
+              </div>
+            </div>
+
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputPrice">Price $:</label>
+      <input name="price" formControlName="price"
+          type="number" class="form-control"
+          id="inputPrice" placeholder="100"
+          [ngClass]="{'is-invalid': price.invalid && (price.dirty || price.touched)}">
+
+        <div *ngIf="price.invalid && (price.dirty || price.touched)"
+          class="invalid-feedback">
+
+          <div *ngIf="price.errors.required">
+            Number is required.
+          </div>
+          <div *ngIf="price.errors.min">
+            Price must be greater or equal 1.
+          </div>
+        </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-group col-md-3">
+      <label for="startDateId">Start date</label>
+      <div class="input-group">
+        <input name="startDate" formControlName="startDate"
+                type="date"
+                class="form-control" id="startDateId" placeholder="yyyy-mm-dd"
+                ngbDatepicker #d1="ngbDatepicker"
+                [ngClass]="{'is-invalid': startDate.invalid && (startDate.dirty || startDate.touched)}">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)"
+          class="invalid-feedback">
+
+          <div *ngIf="startDate.errors.required">
+            Start date is required.
+          </div>
+      </div>
+
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="endDateId">End date</label>
+      <div class="input-group">
+        <input name="endDate" formControlName="endDate"
+              type="date"
+              class="form-control" id="endDateId" placeholder="yyyy-mm-dd"
+              ngbDatepicker #d2="ngbDatepicker"
+              [ngClass]="{'is-invalid': endDate.invalid && (endDate.dirty || endDate.touched)}">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
+             <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)"
+          class="invalid-feedback">
+
+          <div *ngIf="endDate.errors.required">
+            Start date is required.
+          </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="form-group col-md-3">
+      <label for="tripsLimit">Trips limit:</label>
+      <input name="maxAvailableTrips" formControlName="maxAvailableTrips"
+          type="number" class="form-control"
+          id="tripsLimit" placeholder="30"
+          [ngClass]="{'is-invalid': maxAvailableTrips.invalid && (maxAvailableTrips.dirty || maxAvailableTrips.touched)}">
+
+
+      <div *ngIf="maxAvailableTrips.invalid && (maxAvailableTrips.dirty || maxAvailableTrips.touched)"
+        class="invalid-feedback">
+
+        <div *ngIf="maxAvailableTrips.errors.required">
+          Trips limit is required.
+        </div>
+        <div *ngIf="maxAvailableTrips.errors.min">
+          Trips limit must be greater or equal 1.
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- <div class="form-group col-md-3">
+      <label for="tripImage">Trip image:</label>
+      <input name="tripImage" formControlName="fileImage"
+        type="file" class="form-control-file"
+        id="exampleFormControlFile1">
+    </div> -->
+
+
+  </div>
+
+    <div class="form-group">
+      <label for="tripDescription">Description: </label>
+      <textarea
+        name="tripDescription" formControlName="tripDescription"
+        class="form-control"
+        id="tripDescription"
+        [ngClass]="{'is-invalid': tripDescription.invalid && (tripDescription.dirty || tripDescription.touched)}">
+      </textarea>
+
+      <div *ngIf="tripDescription.invalid && (tripDescription.dirty || tripDescription.touched)"
+        class="invalid-feedback">
+
+        <div *ngIf="tripDescription.errors.required">
+          Trips description is required.
+        </div>
+        <div *ngIf="tripDescription.errors.minlength">
+          Trips description must be greater or equal 10.
+        </div>
+      </div>
+
+
+    </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="addTripModelForm.invalid">
+    Add new trip
+  </button>
+
+</form>

@@ -1,0 +1,14 @@
+#adminSection{
+  margin-top: 100px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+#tripsList{
+  max-width: 1200px;
+}
+
+td, th {
+  text-align: center;
+}
+

@@ -1,0 +1,204 @@
+<!-- <p>
+  <button type="button" class="btn btn-outline-primary"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="filterCriteria">
+    Toggle
+  </button>
+</p> -->
+<div id="filterCriteria" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body text-center">
+      <h3>Filter by</h3>
+
+      <form [formGroup]="filterTripsModelForm" (ngSubmit)="onApplyFilterFormSubmit(filterTripsModelForm)">
+
+        <div class="row">
+
+
+
+          <div class="col-sm-12 col-md-3 text-center border-right border-secondary">
+
+            <div class="form-group">
+              <input class="form-check-input" type="checkbox"
+                id="priceChecked" name="priceChecked"  formControlName="priceChecked">
+              <label class="form-check-label" for="priceChecked">
+                Price
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="priceFrom">Price from:</label>
+              <input name="priceFrom" formControlName="priceFrom"
+                  type="number" class="form-control"
+                  id="priceFrom" placeholder="100"
+                  [ngClass]="{'is-invalid': priceFrom.invalid && (priceFrom.dirty || priceFrom.touched)}">
+
+              <div *ngIf="priceFrom.invalid && (priceFrom.dirty || priceFrom.touched)"
+                class="invalid-feedback">
+
+                <div *ngIf="priceFrom.errors.min">
+                  Price must be greater or equal 1.
+                </div>
+
+                <div *ngIf="priceFrom.errors.max">
+                  Price must be less than 100000.
+                </div>
+              </div>
+            </div>
+
+           <div class="form-group">
+
+              <label for="priceTo">Price to:</label>
+              <input name="priceTo" formControlName="priceTo"
+                  type="number" class="form-control"
+                  id="priceTo" placeholder="6000"
+                  [ngClass]="{'is-invalid': priceTo.invalid && (priceTo.dirty || priceTo.touched)}">
+
+              <div *ngIf="priceTo.invalid && (priceTo.dirty || priceTo.touched)"
+                class="invalid-feedback">
+
+                <div *ngIf="priceTo.errors.min">
+                  Price must be greater or equal 1.
+                </div>
+
+                <div *ngIf="priceTo.errors.max">
+                  Price must be less than 100000.
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+
+
+          <div class="col-sm-12 col-md-3 text-center border-right border-secondary">
+
+            <div class="form-group">
+              <input class="form-check-input" type="checkbox"
+                id="dateChecked" name="dateChecked"  formControlName="dateChecked">
+              <label class="form-check-label" for="dateChecked">
+                Date
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="startDateId">Start date</label>
+              <div class="input-group">
+                <input name="startDate" formControlName="startDate"
+                        type="date"
+                        class="form-control" id="startDateId" placeholder="yyyy-mm-dd"
+                        ngbDatepicker #d1="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <label for="endDateId">End date</label>
+              <div class="input-group">
+                <input name="endDate" formControlName="endDate"
+                      type="date"
+                      class="form-control" id="endDateId" placeholder="yyyy-mm-dd"
+                      ngbDatepicker #d2="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+
+
+          <div class="col-sm-12 col-md-3 text-center border-right border-secondary">
+
+            <div class="form-group">
+              <input class="form-check-input" type="checkbox"
+                id="ratingChecked" name="ratingChecked"  formControlName="ratingChecked">
+              <label class="form-check-label" for="ratingChecked">
+                Rating
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="minRating">Min. stars:</label>
+              <input name="minRating" formControlName="minRating"
+                  type="number" class="form-control"
+                  id="minRating" placeholder="3"
+                  [ngClass]="{'is-invalid': minRating.invalid && (minRating.dirty || minRating.touched)}">
+
+              <div *ngIf="minRating.invalid && (minRating.dirty || minRating.touched)"
+                class="invalid-feedback">
+
+                <div *ngIf="minRating.errors.min">
+                  Price must be greater or equal 1.
+                </div>
+
+                <div *ngIf="minRating.errors.max">
+                  Price must be less or equal to 5.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+
+          <div class="col-sm-12 col-md-3 text-center">
+
+            <div class="form-group">
+              <input class="form-check-input" type="checkbox"
+                id="countryChecked" name="countryChecked"  formControlName="countryChecked">
+              <label class="form-check-label" for="countryChecked">
+                Country
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="countryName">Country name:</label>
+              <input name="countryName" formControlName="countryName"
+                  type="text" class="form-control"
+                  id="countryName" placeholder="Country"
+                  [ngClass]="{'is-invalid': countryName.invalid && (countryName.dirty || countryName.touched)}">
+
+              <div *ngIf="countryName.invalid && (countryName.dirty || countryName.touched)"
+                class="invalid-feedback">
+
+                <div *ngIf="countryName.errors.minlength">
+                  You must enter more than 2 letters
+                </div>
+
+                <div *ngIf="countryName.errors.maxlength">
+                  You must enter less than 40 letters
+                </div>
+              </div>
+           </div>
+
+          </div>
+
+        </div>
+
+
+        <button style="margin-top: 30px;" type="submit" class="btn btn-light">
+          Apply filters
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>

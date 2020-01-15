@@ -1,0 +1,132 @@
+
+  <div class="flipper">
+
+      <div class="front"
+        [ngClass]="{'animation-show': showFront === true, 'animation-no-show': showFront === false}">
+
+          <div class="card"
+            [ngClass]="{'border-danger': tripCardDetail.price === currentMinTripPrice,
+              'border-success': tripCardDetail.price === currentMaxTripPrice,
+              'bg-warning': 4 > tripCardDetail.maxAvailableBookings - tripCardDetail.bookedTrips}">
+
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="flipToFront()"
+                    [ngClass]="{'active': showFront === true}">Preview</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="flipToBack()"
+                    [ngClass]="{'active': showFront === false}">Info</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/trip', tripCardDetail.id]">Details</a>
+                  </li>
+                  <li>
+                      <i *ngIf="tripCardDetail.price === currentMaxTripPrice" class="badge badge-success">Highest Price</i>
+                      <i *ngIf="tripCardDetail.price === currentMinTripPrice" class="badge badge-danger">Lowest Price</i>
+                  </li>
+                </ul>
+
+
+
+            </div>
+
+            <h5 class="card-title text-center"> {{tripCardDetail.name | uppercase }} - {{tripCardDetail.countryDestination | uppercase}}</h5>
+
+            <div class="card-body text-center">
+
+              <a [routerLink]="['/trip', tripCardDetail.id]">
+                <img class="rounded-circle" [src]="tripCardDetail.imageLink"  alt="trip_image" width="200" height="200">
+              </a>
+
+              <p class="rating-style">
+                <ngb-rating [(rate)]="tripCardDetail.rating" [max]="maxAvailableRating" [readonly]="true">
+                  <ng-template let-fill="fill">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+              </p>
+
+              <p class="card-text">{{tripCardDetail.description}}</p>
+              <p class="card-text">
+
+                <button *ngIf="checkIfInBasket(tripCardDetail.id)"
+                      id="removeFromBasketButton" class="btn"  (click)="onTripRemovedFromBasket(tripCardDetail)"
+                    >
+                    <i class="fa fa-minus-circle"></i>
+                </button>
+
+                <i
+                 [ngClass]="4 > tripCardDetail.maxAvailableBookings - tripCardDetail.bookedTrips ? 'text-danger' : 'text-muted'">{{tripCardDetail.maxAvailableBookings - tripCardDetail.bookedTrips}} trips available !</i>
+
+                <button *ngIf="(tripCardDetail.maxAvailableBookings - tripCardDetail.bookedTrips) > 0"
+                    id="addToBasketButton" class="btn" (click)="onTripAddedToBasket(tripCardDetail)"
+                  >
+                  <i class="fa fa-plus-circle"></i>
+                </button>
+
+
+               </p>
+            </div>
+
+        </div>
+      </div>
+
+
+      <div class="back"
+          [ngClass]="{'animation-show': showFront === false, 'animation-no-show': showFront === true}">
+
+          <div class="card"
+            [ngClass]="{'border-danger': tripCardDetail.price === currentMinTripPrice,
+                        'border-success': tripCardDetail.price === currentMaxTripPrice,
+                        'bg-warning': 4 > tripCardDetail.maxAvailableBookings - tripCardDetail.bookedTrips}">
+
+            <div class="card-header">
+                  <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="flipToFront()"
+                      [ngClass]="{'active': showFront === true}">Preview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" (click)="flipToBack()"
+                      [ngClass]="{'active': showFront === false}">Info</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Details</a>
+                    </li>
+                    <li>
+                      <i *ngIf="tripCardDetail.price === currentMaxTripPrice" class="badge badge-success">Highest Price</i>
+                      <i *ngIf="tripCardDetail.price === currentMinTripPrice" class="badge badge-danger">Lowest Price</i>
+                    </li>
+                  </ul>
+              </div>
+
+              <h5 class="card-title text-center"> {{tripCardDetail.name | uppercase }} - {{tripCardDetail.countryDestination | uppercase}}</h5>
+
+              <div class="card-body text-center">
+                <p class="marketing-logo">DreamTrip  <i class="fa fa-diamond"></i></p>
+                <p>Lowest price guaranteed.</p>
+              </div>
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Start date: {{tripCardDetail.tripStarts}}</li>
+                <li class="list-group-item">End date: {{tripCardDetail.tripEnds}}</li>
+              </ul>
+
+              <div class="card-footer text-center">
+                <small class="text-primary price-text">Price: {{tripCardDetail.price | currency}}</small>
+              </div>
+
+          </div>
+
+      </div>
+
+
+
+  </div>
+
+
+
+
+

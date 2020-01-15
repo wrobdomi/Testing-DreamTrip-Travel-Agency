@@ -1,0 +1,420 @@
+\documentclass[a4paper,15pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[english, polish]{babel}
+\usepackage[utf8]{inputenc}   % lub utf8
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{anysize}
+\usepackage{enumerate}
+\usepackage{times}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{titleps,kantlipsum}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{framed}
+\usepackage{tcolorbox}
+\usepackage{mdframed}
+\lstloadlanguages{Matlab}
+ 
+\usepackage[justification=centering]{caption}
+\titlelabel{\thetitle.\quad}
+
+\pagenumbering{arabic}
+
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{%
+  \parbox{\textwidth}{\colorbox{darkgreen}{\parbox{\textwidth}{#1#2#3}}\vskip-4pt}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\lstset{frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep}
+
+% Definicja nowego stylu strony
+\newpagestyle{mypage}
+{
+  \headrule
+  
+  \sethead
+  { \MakeUppercase{\thesection\quad \sectiontitle} } 
+  {}
+  {\thesubsection\quad \subsectiontitle}
+  
+  \setfoot
+  {}
+  {}
+  {\thepage}
+}
+
+\newpagestyle{mypage_1}
+{
+	%\headrule
+	
+	
+	\setfoot
+	{}
+	{\thepage}
+	{}
+}
+
+\settitlemarks{section,subsection,subsubsection}
+
+\pagestyle{mypage_1}
+
+\newcommand{\ask}[2]{
+    \begin{tcolorbox}[colback=black!5!white,colframe=gray,title={Pytanie #1}]
+        #2
+    \end{tcolorbox}
+}
+
+\newcommand{\ex}[2]{
+    \begin{tcolorbox}[colback=black!5!white,colframe=black,title={Zadanie #1}]
+        #2
+    \end{tcolorbox}
+}
+
+%\marginsize{left}{right}{top}{bottom}
+\marginsize{3cm}{3cm}{3cm}{3cm}
+\sloppy
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+ 
+ \definecolor{darkred}{rgb}{0.9,0,0}
+\definecolor{grey}{rgb}{0.4,0.4,0.4}
+\definecolor{orange}{rgb}{1,0.6,0.05}
+\definecolor{darkgreen}{rgb}{0.2,0.5,0.05}
+ 
+\definecolor{mGreen}{RGB}{2,217,39}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{RGB}{223,32,214}
+\definecolor{mKeyword}{RGB}{204,152,15}
+\definecolor{backgroundColour}{RGB}{68,68,68}
+\definecolor{commentColor}{RGB}{243,253,254}
+
+
+\lstdefinestyle{Ada}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{commentColor},
+    keywordstyle=\color{mKeyword},
+	basicstyle=\color{mGreen}\footnotesize,    
+    numberstyle=\tiny\color{mPurple},
+    stringstyle=\color{mPurple},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    %captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\lstset{style=Ada}
+
+\newcommand{\Hilight}{\makebox[0pt][l]{\color{cyan}\rule[-4pt]{0.65\linewidth}{14pt}}}
+
+\setcounter{tocdepth}{2}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+ 
+       \LARGE{\textbf{Plan testów}}
+ 
+       \vspace{0.5cm}
+       \textit{Aplikacja dla biura turystycznego}
+ 
+       \vspace{1.5cm}
+ 		
+ 	   Wersja 1.0.2 \\
+       \textbf{\today}
+ 
+       \vfill
+ 
+       %A thesis presented for the degree of\\
+       %Doctor of Philosophy
+ 
+       \vspace{0.8cm}
+ 
+ 		Autor \\
+       Dominik Wróbel\\
+       
+       
+   \end{center}
+\end{titlepage}
+
+
+\newpage
+\tableofcontents
+
+
+
+\newpage
+\section{Historia wersji}
+
+\begin{center}
+ \begin{tabular}{||c c c c||} 
+ \hline
+ Data & Wersja & Opis & Autor \\ [0.5ex] 
+ \hline\hline
+ 14.01.2020 & 1.0.0 & Pierwsza wersja dokumentu & Dominik Wróbel \\ 
+ \hline
+ 15.01.2020 & 2.0.0 & Testy jednostkowe i integracyjne & Dominik Wróbel \\
+ \hline
+ 16.01.2020 & 3.0.0 & Testy jednostkowe, integracyjne i systemowe & Dominik Wróbel \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\section{Wstęp}
+
+Celem tego dokumentu jest opis przypadków testowych dla systemu biura turystycznego \textit{DreamTrip} (\url{https://github.com/software123456789/travel-agency}). 
+
+\section{Opis systemu}
+System agencji \textit{DreamTrip} to aplikacja webowa wykonana w architekturze \textit{Single Page Application} w technologii Typesript i Angular. 
+\subsection{Najważniejsze funkcje systemu i role użytkowników} 
+
+\begin{itemize}
+\item Rola: klient
+\begin{itemize}
+\item Logowanie, rejestrowanie
+\item Wyświetlanie wycieczek
+\item Rezerwowanie wycieczek
+\item Dodawanie wycieczek do koszyka
+\item Usuwanie wycieczek z koszyka
+\item Ocenianie wycieczek
+\item Komentowanie wycieczek
+\end{itemize} 
+\item Rola: admin
+\begin{itemize}
+\item Dodawanie wycieczek
+\item Usuwanie wycieczek
+\end{itemize} 
+\end{itemize}
+
+\section{Zakres testów i dokumentu}
+W zakres tego dokumentu wchodzi opis testów:
+\begin{itemize}
+\item testy jednostkowe 
+\item testy integracyjne
+\item testy systemowe
+\end{itemize}  
+Dokument zawiera również analizę raportu z testów oraz zalecenia dla zespoły developerskiego.
+
+
+\section{Środowisko testowe}
+
+\subsection{Dane ogólne}
+\begin{itemize}
+\item System operacyjny: Windows 10
+\item Baza danych: Firebase
+\item Przeglądarka: Google Chrome 79
+\item Środowisko programistyczne: Visual Studio Code 1.41
+\item Server: Node JS v12.13.0
+\item npm: v6.12.0
+\item Angular 8
+\end{itemize}
+
+\subsection{Biblioteki i narzędzia}
+\begin{itemize}
+\item Jasmine - framework javascript umożliwiający pisanie testów jednostkowych i integracyjnych
+\item Karma - umożliwia wykonywanie testów, połączenie z przeglądarką
+\item Protractor - framework pozwalający na pisanie testów systemowych
+\end{itemize}
+
+\newpage
+\section{Testy integracyjne - przypadki testowe}
+
+
+
+
+
+
+
+\begin{framed}
+\subsection{TC.1.1 Wyświetlanie modułu admina}
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Zalogowany użytkownik z rolą admin
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy moduł admina działa poprawnie w zakresie wyświetlania informacji raz komunikacji z serwisami zasilającymi go w dane.
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Admin przechodzi do panelu admina
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.1.1 & Poprawna lista wycieczek & Panel admina poprawnie wyświetla wycieczki & - \\ \hline
+\end{tabular}
+\end{center}
+\end{framed}
+
+
+
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.2 Usuwanie wycieczki}
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Zalogowany użytkownik z rolą admin
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu. Test sprawdza interakcję komponentów panelu admina oraz serwisu zasilającego te komponenty w dane. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Admin wyświetla panel admina
+\item Admin usuwa wycieczkę poprzez wybranie wycieczki z tabeli
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.2.1 & Lista poprawnych wycieczek & Usunięcie z listy wybranej wycieczki & - \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+
+
+
+\newpage
+\end{framed}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.3 Dodawanie wycieczki}
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Zalogowany użytkownik z rolą admin
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy admin może poprawnie dodać wycieczkę do systemu. Test sprawdza interakcję komponentów panelu admina oraz serwisu zasilającego te komponenty w dane. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Admin wyświetla panel admina
+\item Admin wypełnia formularz i dodaje wycieczkę
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.3.1 & Lista poprawnych wycieczek & Usunięcie z listy wybranej wycieczki & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+
+
+\section{Testy systemowe - przypadki testowe}
+
+
+
+\section{Raport z testów}
+
+\section{Zalecenia}
+
+
+
+\section{Szablon przypadku testowego}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.2 Usuwanie wycieczki}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Zalogowany użytkownik z rolą admin
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu.
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Admin wyświetla panel admina
+\item Admin usuwa wycieczkę poprzez wybranie wycieczki z tabeli
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.1.1 & Lista poprawnych wycieczek & Usunięcie z listy wybranej wycieczki & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\end{document}
