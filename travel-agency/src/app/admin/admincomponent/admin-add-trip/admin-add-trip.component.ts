@@ -52,6 +52,7 @@ export class AdminAddTripComponent implements OnInit {
          form.value.maxAvailableTrips,
          0);
 
+       console.log('emmiting' + newTrip);
        this.newTripAdded.emit(newTrip);
      }
 

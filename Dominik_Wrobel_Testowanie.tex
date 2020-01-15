@@ -280,7 +280,7 @@ Test ma sprawdzić czy moduł admina działa poprawnie w zakresie wyświetlania 
 
 \newpage
 \begin{framed}
-\subsection{TC.1.2 Usuwanie wycieczki}
+\subsection{TC.1.2 Usuwanie wycieczki (admin)}
 
 \vspace{0.5cm}
 
@@ -290,7 +290,7 @@ Test ma sprawdzić czy moduł admina działa poprawnie w zakresie wyświetlania 
 \end{itemize}
 
 \subsubsection{Podsumowanie}
-Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu. Test sprawdza interakcję komponentów panelu admina oraz serwisu zasilającego te komponenty w dane. 
+Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu. Test sprawdza interakcję komponentów panelu admina oraz serwisu zasilającego te komponenty w dane. Komponent odpowiedzialny za usuwanie danych ma emitować event w przypadku wybrania wycieczki oraz pobierać dane o wycieczce od komponentu rodzica.  
 
 \subsubsection{Kroki}
 \begin{enumerate}
@@ -328,7 +328,7 @@ Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu. Test
 
 \newpage
 \begin{framed}
-\subsection{TC.1.3 Dodawanie wycieczki}
+\subsection{TC.1.3 Dodawanie wycieczki (admin)}
 
 \vspace{0.5cm}
 
@@ -338,12 +338,69 @@ Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu. Test
 \end{itemize}
 
 \subsubsection{Podsumowanie}
-Test ma sprawdzić czy admin może poprawnie dodać wycieczkę do systemu. Test sprawdza interakcję komponentów panelu admina oraz serwisu zasilającego te komponenty w dane. 
+Test ma sprawdzić czy admin może poprawnie dodać wycieczkę do systemu. Test skupia się na testowaniu poprawności danych wprowadzanych przez użytkownika oraz sposobie obsługi tych danych przez system.
+Wymagania wobec danych:
+\begin{itemize}
+\item name, minimum 3 znaki, maksimum 200, pole wymagane
+\item country, minimum 3 znaki, maksimum 200, pole wymagane
+\item cena, minimum 1, maksimum 1000000, pole wymagane, liczba
+\item startDate, data w formacie dd/mm/rrrr, pole wymagane
+\item endDate, data w formacie dd/mm/rrrr, pole wymagane
+\item maxAvailableTrips, minimum 1, maksimum 200, pole wymagane, liczba
+\item tripsDescription, minimum 10, maksimum 500, pole wymagane
+\end{itemize}
 
 \subsubsection{Kroki}
 \begin{enumerate}
 \item Admin wyświetla panel admina
 \item Admin wypełnia formularz i dodaje wycieczkę
+\end{enumerate}
+
+\newpage
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.3.1 & Brak danych & Walidacja zawodzi, przycisk do wysyłania deaktywowany & Testowanie zachowania przy braku wprowadzonych danych \\ \hline
+ TC.1.3.2 & Poprawne dane & Walidacja pomyślna, przycisk do wysyłania aktywny & Testowanie zachowania przy braku wprowadzonych danych \\ \hline
+ TC.1.3.3 & Data w niepoprawnym formacie & Walidacja niepomyślna, komunikat o niepoprawnej dacie & Test formatu danych \\ \hline
+ TC.1.3.4 & Przekroczenie maksymalnej liczby znaków & Walidacja niepomyślna, komunikat o wymaganej liczbie znaków & Testowanie walidatora odpowiedzialnego za długość danych \\ \hline
+ TC.1.3.5 & Zbyt mała liczba & Walidacja niepomyślna, komunikat o błędnej wartości & Testowanie walidatora odpowiedzialnego za zakres liczb \\ \hline
+ TC.1.3.6 & Zbyt duża liczba & Walidacja niepomyślna, komunikat o błędnej wartości & Testowanie walidatora odpowiedzialnego za zakres liczb \\ \hline
+ TC.1.3.7 & Znaki zamiast liczb & Walidacja niepomyślna, komunikat o błędnych danych & Testowanie walidatora odpowiedzialnego za liczby \\ \hline
+ TC.1.3.8 & Wartości graniczne & Walidacja niepomyślna, komunikat o błędnych danych & Testowanie działania dla wartości granicznych walidatorów \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.4 Tworzenie paska menu dla niezalogowanego użytkownika}
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik nie jest zalogowany
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy menu paska nawigacyjnego widoczne w sekcji \textit{header} jest poprawnie tworzone dla niezalogowanego użytkownika, tj. zawiera przyciski do logowania i rejestracji. Test sprawdza integrację komponentu nagłówka z serwisem autoryzacji. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik otwiera stronę domową aplikacji
 \end{enumerate}
 
 \subsubsection{Dane testowe}
@@ -352,7 +409,7 @@ Test ma sprawdzić czy admin może poprawnie dodać wycieczkę do systemu. Test 
 \begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
  \hline
  \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
- TC.1.3.1 & Lista poprawnych wycieczek & Usunięcie z listy wybranej wycieczki & - \\ \hline
+ TC.1.4.1 & - & Lista menu wyświetla przyciski do logowania i rejestracji & - \\ \hline
 \end{tabular}
 \end{center}
 
@@ -360,6 +417,265 @@ Test ma sprawdzić czy admin może poprawnie dodać wycieczkę do systemu. Test 
 
 
 
+
+\newpage
+\begin{framed}
+\subsection{TC.1.5 Tworzenie paska menu dla użytkownika zalogowanego z rolą klienta}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik nie jest zalogowany
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy menu paska nawigacyjnego widoczne w sekcji \textit{header} jest poprawnie wyświetlane dla zalogowanego użytkownika z rolą klienta, tj. zawiera przyciski do wyświetlania wycieczek, koszyka, historii i wylogowania.  Test sprawdza także integrację komponentu nagłówka z serwisem autoryzacji. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik przechodzi na stronę domową
+\item Użytkownik loguje się do systemu z rolą klienta
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.5.1 & Model użytkownika z rolą klienta i poprawnym emailem oraz hasłem & Wyświetlenie 4 przycisków w pasku menu & Po poprawnym zalogowaniu dla użytkownika z rolą klient widoczne są 4 przyciski \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.6 Tworzenie paska menu dla użytkownika zalogowanego z rolą admina}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik nie jest zalogowany
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy menu paska nawigacyjnego widoczne w sekcji \textit{header} jest poprawnie wyświetlane dla zalogowanego użytkownika z rolą admina, tj. zawiera przyciski do wyświetlania wycieczek, koszyka, historii, wylogowania oraz dodatkowo panel admina.  Test sprawdza także integrację komponentu nagłówka z serwisem autoryzacji. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik przechodzi na stronę domową
+\item Użytkownik loguje się do systemu z rolą admina
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.6.1 & Model użytkownika z rolą admina i poprawnym emailem oraz hasłem & Wyświetlenie 5 przycisków w pasku menu & Po poprawnym zalogowaniu dla użytkownika z rolą admina widoczne jest 5 przycisków \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.7 Obliczanie minimalnej i maksymalnej ceny wycieczek}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy najmniejsza i największa cena wycieczek, które komponent otrzymuje z serwisu jest poprawnie wyznaczana. Na podstawie tych wartości są dodawane style do kart wycieczek. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik wyświetla wszystkie oferty wycieczek.
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.7.1 & Lista poprawnych wycieczek & Obliczenie największej i najmniejszej ceny wycieczki & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.8 Obliczanie liczby wszystkich zarezerwowanych wycieczek}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy poprawnie obliczana jest liczba wszystkich zarezerwowanych wycieczek. Na podstawie tych wartości do strony dodawane są style. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik wyświetla wszystkie oferty wycieczek.
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.8.1 & Lista poprawnych wycieczek & Obliczenie liczby wszystkich zarezerwowanych wycieczek & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.9 Wyświetlenie panelu filtrowania wycieczek}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić komponent wycieczek poprawnie wyświetla panel do filtrowania wycieczek po kliknięciu na przycisk pokazania panelu. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik wyświetla wszystkie oferty wycieczek
+\item Użytkownik otwiera panel filtrowania wycieczek
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.9.1 & - & Wyświetlenie panelu filtrowania wycieczek & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.10 Dodawanie wycieczki do koszyka i aktualizacja zarezerwowanych wycieczek}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\item Oferta wycieczki jest dostępna do zarezerwowania
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test sprawdza czy oferta wycieczki została poprawnie dodana do koszyka, w koszyku przechowywana jest liczba ofert dla danej wycieczki, dodanie dwa razy tej samej oferty powinno zwiększyć liczbę rezerwacji dla danej oferty, ale pozostawić tylko jedną ofertę dla wycieczki w koszyku. Dodanie wycieczki do koszyka powinno spowodować aktualizację liczby zarezerwowanych wycieczek.
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik wyświetla wszystkie oferty wycieczek
+\item Użytkownik dodaje wybraną wycieczkę do koszyka
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.10.1 & Dwie takie same wycieczki & Dodanie jednej wycieczki do koszyka & Dwie takie same wycieczki powinny sprawić, że w koszyku będzie przechowywana tylko jedna z liczbą rezerwacji równą 2 \\ \hline
+  TC.1.10.2 & Dwie różne wycieczki & Dodanie dwóch wycieczek do koszyka & Dwie różne wycieczki powinny sprawić, że w koszyku będą przechowywane dwie wycieczki \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.11 Usunięcie wycieczki z koszyka i aktualizacja zarezerwowanych wycieczek}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\item Użytkownik dodał przynajmniej jedną ofertę do koszyka
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test sprawdza czy oferta wycieczki została poprawnie dodana do koszyka, w koszyku przechowywana jest liczba ofert dla danej wycieczki, dodanie dwa razy tej samej oferty powinno zwiększyć liczbę rezerwacji dla danej oferty, ale pozostawić tylko jedną ofertę dla wycieczki w koszyku. Usunięcie wycieczki z koszyka powinno spowodować aktualizację liczby zarezerwowanych wycieczek.
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik wyświetla wszystkie oferty wycieczek
+\item Użytkownik dodaje wybraną wycieczkę do koszyka
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.11.1 & Wycieczka, której nie ma w koszyku & Brak reakcji ze strony koszyka & Aplikacja powinna być zabezpieczona przed nieoczekiwanymi danymi \\ \hline
+ TC.1.11.2 & Wycieczka, która jest w koszyku & Usunięcie wycieczki z koszyka & Normalne działania aplikacji \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
 
 
 
