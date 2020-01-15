@@ -71,7 +71,7 @@ class MockTripsService {
 }
 
 
-xdescribe('Admin Component and Trips Service', () => {
+describe('Admin Component and Trips Service', () => {
 
   // admin component and admin component fixture
   let adminComponent: AdminComponent;

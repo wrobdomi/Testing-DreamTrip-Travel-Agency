@@ -93,7 +93,7 @@ class MockAuthService {
 }
 
 
-xdescribe('Header Component and Auth Service', () => {
+describe('Header Component and Auth Service', () => {
 
   // admin component and admin component fixture
   let headerComponent: HeaderComponent;

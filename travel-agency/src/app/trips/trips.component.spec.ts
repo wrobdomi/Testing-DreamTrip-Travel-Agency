@@ -233,7 +233,7 @@ describe('Trips Component and Trips Service', () => {
 
     tripsComponent.getAllBookedTripsNumber();
 
-    expect(tripsComponent.allBookedTripsNumber).toBe(10);
+    expect(tripsComponent.allBookedTripsNumber).toBe(13);
 
   }));
 
@@ -302,8 +302,40 @@ describe('Trips Component and Trips Service', () => {
     expect(mockBasketService.tripsInBasketMap.size).toBe(0);
     expect(tripsComponent.tripsArray[5].bookedTrips).toBe(0);
 
+    // const filteringDebugComponent = tripsComponentDebugElement.query(By.directive(TripsFilterCriteriaComponent));
+    // console.log(filteringDebugComponent.componentInstance.testing);
+
   }));
 
+
+  it('should remove trip to user basket',  fakeAsync( () => {
+
+    tripsComponent.ngOnInit();
+
+    // add trips to basket first
+    tripsComponent.onTripAddedToBasketReceived(tripsComponent.tripsArray[5]);
+    tripsComponent.onTripAddedToBasketReceived(tripsComponent.tripsArray[5]);
+
+    tripsComponentFixture.detectChanges();
+
+    tripsComponent.onTripRemovedFromBasketReceived(tripsComponent.tripsArray[5]);
+
+    tick();
+
+    expect(tripsComponent.tripsArray[5].bookedTrips).toBe(1);
+    expect(mockBasketService.tripsInBasketMap.size).toBe(1);
+
+    tripsComponent.onTripRemovedFromBasketReceived(tripsComponent.tripsArray[5]);
+
+    tick();
+
+    expect(mockBasketService.tripsInBasketMap.size).toBe(0);
+    expect(tripsComponent.tripsArray[5].bookedTrips).toBe(0);
+
+    // const filteringDebugComponent = tripsComponentDebugElement.query(By.directive(TripsFilterCriteriaComponent));
+    // console.log(filteringDebugComponent.componentInstance.testing);
+
+  }));
 
 
 

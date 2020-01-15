@@ -10,6 +10,7 @@ import { TripsService } from '../../trips.service';
   styleUrls: ['./trips-filter-criteria.component.css']
 })
 export class TripsFilterCriteriaComponent implements OnInit {
+  testing = 4;
 
   private tripsService: TripsService;
 
@@ -19,7 +20,6 @@ export class TripsFilterCriteriaComponent implements OnInit {
   filterTripsModelForm: FormGroup;
   formBuilder: FormBuilder;
   @Output() filteringCriteriaApplied = new EventEmitter<FilteringCriteria>();
-
 
   constructor(formBuilder: FormBuilder, tripsService: TripsService) {
     this.formBuilder = formBuilder;

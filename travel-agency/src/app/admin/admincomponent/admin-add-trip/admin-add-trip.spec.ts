@@ -71,7 +71,7 @@ class MockTripsService {
 }
 
 
-xdescribe('Admin Add Component form validation', () => {
+describe('Admin Add Component form validation', () => {
 
   // admin component and admin component fixture
   let adminAddComponent: AdminAddTripComponent;

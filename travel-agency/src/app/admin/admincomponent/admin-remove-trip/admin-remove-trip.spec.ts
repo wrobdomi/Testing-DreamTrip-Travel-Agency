@@ -71,7 +71,7 @@ class MockTripsService {
 }
 
 
-xdescribe('Admin Remove Component Integration', () => {
+describe('Admin Remove Component Integration', () => {
 
   // admin component and admin component fixture
   let adminRemoveComponent: AdminRemoveTripComponent;

@@ -680,6 +680,49 @@ Test sprawdza czy oferta wycieczki została poprawnie dodana do koszyka, w koszy
 
 
 
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.1.12 Filtrowanie wycieczek}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test sprawdza czy prezentowane dla użytkownika wycieczki są zgodne z kryteriami zaznaczonymi przez użytkownika. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik wyświetla wszystkie oferty wycieczek
+\item Użytkownik otwiera panel do ustawiania preferencji
+\item Użytkownik wybiera preferencje
+\item Użytkownik akceptuje wprowadzone preferencje
+\end{enumerate}
+
+\subsubsection{Dane testowe TODO}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.1.12.1 & Filtrowanie po cenie, cena minimalna 1400, cena maksymalna 5000 & System wyświetla wycieczki w zadanym przedziale cenowym & Testowanie jednej z opcji filtrowania \\ \hline
+ TC.1.12.2 & Filtrowanie po dacie, od daty 12/01/2019, do daty 01/01/2020 & System wyświetla wycieczki w zadanym przedziale czasowym & Testowanie jednej z opcji filtrowania \\ \hline
+ TC.1.12.3 & Filtrowanie po kraju, wycieczki do kraju 'Poland' & System wyświetla wycieczki do zadanego kraju & Testowanie jednej z opcji filtrowania \\ \hline
+ TC.1.12.4 & Filtrowanie po ratingu, minimalny rating równy 3.0 & System wyświetla wycieczki z ratingiem większym niż zadany & Testowanie jednej z opcji filtrowania \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
 \section{Testy systemowe - przypadki testowe}
 
 
