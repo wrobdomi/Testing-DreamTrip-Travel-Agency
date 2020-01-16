@@ -170,9 +170,9 @@
  \hline\hline
  14.01.2020 & 1.0.0 & Pierwsza wersja dokumentu & Dominik Wróbel \\ 
  \hline
- 15.01.2020 & 2.0.0 & Testy jednostkowe i integracyjne & Dominik Wróbel \\
+ 15.01.2020 & 1.0.0 & Testy jednostkowe i integracyjne & Dominik Wróbel \\
  \hline
- 16.01.2020 & 3.0.0 & Testy jednostkowe, integracyjne i systemowe & Dominik Wróbel \\ [1ex] 
+ 16.01.2020 & 2.0.0 & Testy jednostkowe, integracyjne i systemowe & Dominik Wróbel \\ [1ex] 
  \hline
 \end{tabular}
 \end{center}
@@ -203,14 +203,14 @@ System agencji \textit{DreamTrip} to aplikacja webowa wykonana w architekturze \
 \end{itemize} 
 \end{itemize}
 
-\section{Zakres testów i dokumentu}
+\section{Zakres dokumentu}
 W zakres tego dokumentu wchodzi opis testów:
 \begin{itemize}
 \item testy jednostkowe 
 \item testy integracyjne
 \item testy systemowe
 \end{itemize}  
-Dokument zawiera również analizę raportu z testów oraz zalecenia dla zespoły developerskiego.
+Dokument zawiera również analizę raportu z testów oraz zalecenia dla zespołu developerskiego.
 
 
 \section{Środowisko testowe}
@@ -218,7 +218,7 @@ Dokument zawiera również analizę raportu z testów oraz zalecenia dla zespoł
 \subsection{Dane ogólne}
 \begin{itemize}
 \item System operacyjny: Windows 10
-\item Baza danych: Firebase
+\item Baza danych: Firebase \url{https://console.firebase.google.com/u/1/project/travel-agency-ddc82/overview}
 \item Przeglądarka: Google Chrome 79
 \item Środowisko programistyczne: Visual Studio Code 1.41
 \item Server: Node JS v12.13.0
@@ -243,7 +243,7 @@ Dokument zawiera również analizę raportu z testów oraz zalecenia dla zespoł
 
 
 \begin{framed}
-\subsection{TC.1.1 Wyświetlanie modułu admina}
+\subsection{TC.1.1 Wyświetlanie panelu admina (admin)}
 
 \vspace{0.5cm}
 
@@ -579,7 +579,7 @@ Test ma sprawdzić czy poprawnie obliczana jest liczba wszystkich zarezerwowanyc
 \end{itemize}
 
 \subsubsection{Podsumowanie}
-Test ma sprawdzić komponent wycieczek poprawnie wyświetla panel do filtrowania wycieczek po kliknięciu na przycisk pokazania panelu. 
+Test ma sprawdzić czy komponent wycieczek poprawnie wyświetla panel do filtrowania wycieczek po kliknięciu na przycisk pokazania panelu. 
 
 \subsubsection{Kroki}
 \begin{enumerate}
@@ -722,42 +722,26 @@ Test sprawdza czy prezentowane dla użytkownika wycieczki są zgodne z kryteriam
 \end{framed}
 
 
-
+\newpage
 \section{Testy systemowe - przypadki testowe}
 
-
-
-\section{Raport z testów}
-
-\section{Zalecenia}
-
-
-
-\section{Szablon przypadku testowego}
-
-
-
-
-
-\newpage
 \begin{framed}
-\subsection{TC.1.2 Usuwanie wycieczki}
+\subsection{TC.2.1 Wyświetlanie wiadomości powitalnej}
 
 
 \vspace{0.5cm}
 
 \subsubsection{Warunki początkowe}
 \begin{itemize}
-\item Zalogowany użytkownik z rolą admin
+\item Brak
 \end{itemize}
 
 \subsubsection{Podsumowanie}
-Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu.
+Test ma sprawdzić czy wiadomość powitalna na stronie domowej wyświetla się poprawnie.
 
 \subsubsection{Kroki}
 \begin{enumerate}
-\item Admin wyświetla panel admina
-\item Admin usuwa wycieczkę poprzez wybranie wycieczki z tabeli
+\item Użytkownik przechodzi na stronę domową
 \end{enumerate}
 
 \subsubsection{Dane testowe}
@@ -766,11 +750,287 @@ Test ma sprawdzić czy admin może poprawnie usunąć wycieczkę z systemu.
 \begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
  \hline
  \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
- TC.1.1.1 & Lista poprawnych wycieczek & Usunięcie z listy wybranej wycieczki & - \\ \hline
+ TC.2.1.1 & - & Wyświetlenie wiadomości powitalnej & - \\ \hline
 \end{tabular}
 \end{center}
 
 \end{framed}
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.2.2 Wyświetlenie menu dla niezalogowanego użytkownika}
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik nie jest zalogowany
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy linki dla niezalogowanego użytkownika są wyświetlanie poprawnie.
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik przechodzi na stronę domową
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.2.2.1 & - & Wyświetlenie w menu linku do logowania i zakładania konta & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.2.3 Logowanie użytkownika z rolą klienta i dostosowanie paska menu}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Brak
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy system poprawnie loguje użytkownika oraz jak reaguje w przypadku nieprawidłowych danych logowania. Oprócz tego po poprawnym zalogowaniu system powinien dostosować pasek menu do użytkownika i jego roli. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik loguje się do systemu niepoprawnymi danymi
+\item Użytkownik loguje się do systemu poprawnymi danymi z rolą klient
+\item Użytkownik przechodzi na stronę z ofertami
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.2.3.1 & Niepoprane dane logowania & System pozostaje na stronie domowej, brak zmiany paska menu & Testowanie działania dla niepoprawnych danych \\ \hline
+ TC.2.3.2 & Poprawne dane logowania & System przechodzi na stronę z wycieczkami, dostosowanie paska menu & Testowanie działania dla poprawnych danych \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.2.4 Logowanie użytkownika z rolą admina i dostosowanie paska menu}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Brak
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy system poprawnie loguje użytkownika oraz jak reaguje w przypadku nieprawidłowych danych logowania. Oprócz tego po poprawnym zalogowaniu system powinien dostosować pasek menu do roli admina. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik loguje się do systemu niepoprawnymi danymi
+\item Użytkownik loguje się do systemu poprawnymi danymi z rolą admin
+\item Użytkownik przechodzi na stronę z ofertami
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.2.3.1 & Niepoprane dane logowania & System pozostaje na stronie domowej, brak zmiany paska menu & Testowanie działania dla niepoprawnych danych \\ \hline
+ TC.2.3.2 & Poprawne dane logowania & System przechodzi na stronę z wycieczkami, dostosowanie paska menu & Testowanie działania dla poprawnych danych \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.2.5 Wyświetlanie kryteriów filtrowania}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy system poprawnie prezentuje panel do filtrowania wycieczek. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik przechodzi na stronę z ofertami wycieczek
+\item Użytkownik wybiera przycisk panelu filtrowania
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.2.5.1 & - & Poprawne wyświetlenie panelu filtrowania & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.2.6 Dodawania i usuwanie wycieczki z koszyka}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy system poprawie wyświetla elementy, które służą do dodawania i usuwania elementu z koszyka. Przycisk dodawania jest dostępny po zalogowaniu o ile wycieczka jest dostępna. Przycisk usuwania jest dostępny jeśli użytkownik dodał wybraną wycieczkę do koszyka. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik przechodzi na stronę z ofertami wycieczek
+\item Użytkownik dodaje wycieczkę do koszyka
+\item Użytkownik usuwa wycieczkę z koszyka
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.2.6.1 & - & System wyświetla przycisk dodawania wycieczki, system wyświetla przycisk usuwania wycieczki po dodaniu wycieczki do koszyka & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+
+
+\newpage
+\begin{framed}
+\subsection{TC.2.7 Oznaczanie wycieczki z mała liczbą dostępnych ofert}
+
+
+\vspace{0.5cm}
+
+\subsubsection{Warunki początkowe}
+\begin{itemize}
+\item Użytkownik jest zalogowany w systemie
+\end{itemize}
+
+\subsubsection{Podsumowanie}
+Test ma sprawdzić czy wycieczki z liczbą dostępnych ofert mniejszą niż 4 są poprawnie wyświetlane, tj. czy mają odpowiednią wartość koloru dla tła. 
+
+\subsubsection{Kroki}
+\begin{enumerate}
+\item Użytkownik przechodzi na stronę z wycieczkami
+\item Użytkownik dodaje do koszyka 4 z 5 dostępnych wycieczek
+\end{enumerate}
+
+\subsubsection{Dane testowe}
+
+\begin{center}
+\begin{tabular}{ |C{1.5cm}|C{3cm}|C{4cm}|C{4cm}| } 
+ \hline
+ \textbf{Id} & \textbf{Dane} & \textbf{Oczekiwanie} & \textbf{Uzasadnienie} \\ \hline
+ TC.2.7.1 & - & Wycieczka wyświetlania jest na innym kolorze tła & - \\ \hline
+\end{tabular}
+\end{center}
+
+\end{framed}
+
+
+\newpage
+\section{Raport z testów}
+\begin{lstlisting}
+ng test
+...
+Chrome 79.0.3945 (Windows 10.0.0): Executed 27 of 27 SUCCESS (9.044 secs / 8.962 secs)
+TOTAL: 27 SUCCESS
+TOTAL: 27 SUCCESS
+\end{lstlisting}
+
+
+\begin{lstlisting}
+ng e2e
+...
+Executed 7 of 7 specs (2 FAILED) in 51 secs.
+[18:42:16] I/launcher - 0 instance(s) of WebDriver still running
+[18:42:16] I/launcher - chrome #01 failed 2 test(s)
+[18:42:17] I/launcher - overall: 2 failed spec(s)
+[18:42:17] E/launcher - Process exited with error code 1
+\end{lstlisting}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.75]{testy1.png}}
+\end{figure}
+
+\newpage
+\begin{lstlisting}
+ng test --watch=false --code-coverage
+
+=============================== Coverage summary ===============================
+Statements   : 37.13% ( 186/501 )
+Branches     : 14.55% ( 8/55 )
+Functions    : 27.37% ( 49/179 )
+Lines        : 33.62% ( 155/461 )
+================================================================================
+\end{lstlisting}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.5]{testy2.png}}
+\end{figure}
+
+Kod testów:
+\begin{itemize}
+\item \url{https://github.com/software123456789/travel-agency-tests.git}
+\end{itemize}
+
+
+\section{Zalecenia}
+
+\begin{itemize}
+\item Raport pokazuje zadowalające pokrycie testami jednostkowymi i integracyjnymi dla komponentów prezentacyjnych, zaleca się jednak wykonanie większej ilości testów dla serwisów 
+\item Naprawy wymaga przycisk do wyświetlania panelu filtrowania (T.C.2.4), który poprawnie otwiera panel, ale przestaje działać po próbie ponownego otworzenia
+\end{itemize}
+
+Komentarz: mała liczba testów jednostkowych i integracyjnych dla serwisów wynika z konieczności mockowania dla tych serwisów serwisu, który zapewniany jest przez moduł angular firestore.
+
 
 
 
